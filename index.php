@@ -63,66 +63,43 @@
          </div>
       </div>
       <?php include 'news_slider.php';?>
-      
    </div>
    </div>
    </div>
    <div class="container">
-   <h4>Video Perkenalan</h4>
-   <hr>
-   <div class="row">
-        <div class="col-md-6 mx-auto">
-            <!-- Your YouTube video iframe goes here -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/-aAPigDbuPs?si=2tWz8q-PgGYo-_Tz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+   <?php
+// Assuming you have a database connection established as $koneksi
+
+// SQL query to fetch data from the menu table and join it with the berita table
+$sql = "SELECT menu.menu_name, berita.judul, berita.isi_berita,menu.menu_code
+        FROM menu
+        INNER JOIN berita ON menu.id_berita = berita.id_berita";
+$result = $koneksi->query($sql);
+
+// Check if there are any rows in the result
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $menuName = $row['menu_name'];
+        $judul = $row['judul'];
+        $isiBerita = $row['isi_berita'];
+        $menu_code=$row['menu_code'];
+        if ($menu_code=='1'||$menu_code=='2'){
+            // Display the content inside the container
+        echo '<div class="container">';
+        echo '<h4>' . $judul . '</h4>';
+        echo '<hr>';
+        echo '<div>' . $isiBerita . '</div>';
+        echo '</div>';
+        }
+    }
+} else {
+    // No data found in the menu table
+    echo 'No menu items found.';
+}
+?>
+
     </div>
-   <h4>ALAMAT GOOGLE MAPS MA'HAD TAHFIDZ YATIM DHUAFA KITABINA</h4>
-   <div class="row">
-            <div class="col-md-6">
-                <h2>Kitabina 1 Gaperta</h2>
-                <p>
-                    Ma'had Tahfidz Al-Qur'an KITABINA 1<br>
-                    Jl. Gaperta Ujung Jl. Darma No.15A<br>
-                    Kel. Tanjung Gusta<br>
-                    Kec. Medan Helvetia<br>
-                    Kota Medan<br>
-                </p>
-                <p>
-                    Ustazdah Ayu Permadani: <a href="https://wa.me/+6281264605069">wa.me/+62812-6460-5069</a><br>
-                    Admin 1 Kitabina: <a href="https://wa.me/+6281372137455">wa.me/+62813-7213-7455</a><br>
-                </p>
-                <a href="https://maps.app.goo.gl/kPcBqBY2eTNFVjyLA" target="_blank">Google Maps Link</a>
-            </div>
-            <div class="col-md-6">
-                <h2>Kitabina 2 Tembung</h2>
-                <p>
-                    Ma'had Tahfidz Al-Qur'an KITABINA 2 Tembung<br>
-                    Jl. Pusaka Ps. No.68, Bandar Klippa, Kec. Percut Sei Tuan<br>
-                    Kabupaten Deli Serdang, Sumatera Utara 20371<br>
-                </p>
-                <p>
-                    Ustazdah Maytri: <a href="https://wa.me/+6289502682080">wa.me/+62895-0268-2080</a><br>
-                    Admin 1 Kitabina: <a href="https://wa.me/+6281372137455">wa.me/+62813-7213-7455</a><br>
-                </p>
-                <a href="https://maps.app.goo.gl/YBCHK5cVGcXPabwu8" target="_blank">Google Maps Link</a>
-            </div>
-            <!-- Repeat the above structure for other locations -->
-            <div class="col-md-6">
-                <h2>Kitabina 3 Stabat</h2>
-                <p>
-                    Jl. Proklamasi Kec. Kwala Bingai<br>
-                    Kab. Langkat Sumatera Utara<br>
-                </p>
-                <p>
-                    Ustazdah Bengi: <a href="https://wa.me/+6282362102353">wa.me/+62823-6210-2353</a><br>
-                    Admin 1 Kitabina: <a href="https://wa.me/+6281372137455">wa.me/+62813-7213-7455</a><br>
-                </p>
-                <a href="https://maps.app.goo.gl/C6KCDzfVeN1WuM1u5" target="_blank">Google Maps Link</a>
-            </div>
-            <!-- Continue repeating the structure for other locations -->
-        </div>
-   <hr>
-   </div>
+   
    <!-- main-panel ends -->
    <!-- container-scroller ends -->
    <!-- partial:partials/_footer.html -->

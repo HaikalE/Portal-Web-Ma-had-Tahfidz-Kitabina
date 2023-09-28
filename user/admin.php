@@ -72,6 +72,19 @@ include 'adminbody.php';
                   <h4>User</h4>
                 </a>
               </div>
+              <div class="col big-icon">
+                <a href="menu.php" style="text-decoration: none;">
+                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                <lord-icon
+                    src="https://cdn.lordicon.com/lbsajkny.json"
+                    trigger="hover"
+                    colors="primary:#4be1ec,secondary:#cb5eee"
+                    style="width:100px;height:100px">
+                </lord-icon>
+                  <br>
+                  <h4>Menu</h4>
+                </a>
+              </div>
             </div>
           </div>
         </div>

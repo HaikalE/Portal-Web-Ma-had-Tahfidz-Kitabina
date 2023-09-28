@@ -143,55 +143,23 @@ $explode_url = explode("/", $url);
                 <ul
                   class="navbar-nav d-lg-flex justify-content-between align-items-center"
                 >
-                  <li>
-                    <button class="navbar-close">
-                      <i class="mdi mdi-close"></i>
-                    </button>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/index.php" style="background-color:lightcoral;">Beranda</a>
-                  </li>
-                  
-                  <li class="nav-item">&nbsp;</li>
-                  <li class="nav-item">
-                    <select id="mySelect" style="background-color: lightskyblue; color: white; border: none; font-weight: bold;">
-                    <option value="tentang_yayasan" style="display: none;">TENTANG YAYASAN</option>
-                      <optgroup label="Profil Pimpinan">
-                      <div style="text-align: right;">
-                        <option value="sub_option1">Trimurti</option>
-                        <option value="sub_option2">Pimpinan Pondok</option>
-                      </div>
-                      <optgroup label="Pesantren Cabang">
-                      <div style="text-align: right;">
-                        <option value="sub_option1">Pesantren Putra</option>
-                        <option value="sub_option2">Pesantren Putri</option>
-                      </div>
-                      <optgroup label="Falsafah">
-                      <div style="text-align: right;">
-                        <option value="sub_option1">Moto</option>
-                        <option value="sub_option2">Panca Jangka</option>
-                        <option value="sub_option2">Panca Jiwa</option>
-                        <option value="sub_option2">Sintesa</option>
-                      </div>
-                    </select>
-                  </li>
+                
+                  <?php
+                // Assuming you have a database connection established in your "koneksi.php" file
+                include 'Configurasi/koneksi.php';
 
-                  <li class="nav-item">&nbsp;</li>
-                  <li class="nav-item">
-                    <select id="mySelect1" style="background-color: lightskyblue; color: white; border: none; font-weight: bold;">
-                    <option value="sejarah" style="display: none;">SEJARAH</option>
-                    <option value="">Latar Belakang</option>
-                    <option value="">Struktur</option>
-                    </select>
-                  </li>
-                  <li class="nav-item">&nbsp;</li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="" style="background-color:lightskyblue;">Pendaftaran</a>
-                  </li>
-                  <li class="nav-item">&nbsp;</li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="" style="background-color:lightskyblue;">kontak & alamat</a>
-                  </li>
+                // Fetch menu items from the database
+                $sqlMenu = 'SELECT * FROM menu';
+                $qryMenu = $koneksi->query($sqlMenu);
+
+                // Loop through the menu items and display them as list items
+                while ($rowMenu = $qryMenu->fetch_assoc()) {
+                    echo '<li class="nav-item"> <a class="nav-link" href="detail.php?p='.$rowMenu['id_berita'].'" style="background-color:lightskyblue;">' . 
+                    htmlspecialchars($rowMenu['menu_name']) . 
+                    '</a></li><li class="nav-item">&nbsp;</li>';
+                }
+
+                ?>
                 </ul>
               </div>
             </div>
